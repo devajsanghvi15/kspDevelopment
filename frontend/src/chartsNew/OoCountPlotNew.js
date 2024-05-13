@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
   Label,
 } from "recharts";
+import BoxHeader from "../components/BoxHeader";
 
 function OoCountPlotNew() {
   const json_data = [
@@ -55,24 +56,40 @@ function OoCountPlotNew() {
   ];
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <BarChart width={500} height={300} data={json_data}>
-        <CartesianGrid strokeDasharray="3 3" />
+    <>
+    <BoxHeader title="Accident Distribution By District" subtitle="Shows the total number of accidents in each district (2016-2023)" style={{display: 'flex', width: '100%'}} />
+    <ResponsiveContainer width="100%" height="96%">
+      <BarChart
+        width={500}
+        height={300}
+        data={json_data}
+        margin={{ top: 0, left: 1, right: 0, bottom: 0 }}
+      >
+        <defs>
+          <linearGradient id="colorBar" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#71f5de" stopOpacity={0.8} />
+            <stop offset="95%" stopColor="#71f5de" stopOpacity={0} />
+          </linearGradient>
+        </defs>
+        <CartesianGrid vertical={false} stroke={"#48494e"} />
         <XAxis
           dataKey="districtName"
-          angle={-45}
+          angle={-50}
           textAnchor="end"
-          interval={0}
-          height={120}
+          // interval={0}
+          height={140}
+          axisLine={false}
+          tickLine={false}
         >
           <Label angle={-45} position="insideBottom" />
         </XAxis>
-        <YAxis />
-        <Tooltip content={<CustomTooltip />} />
+        <YAxis axisLine={false} tickLine={false}/>
+        <Tooltip content={<CustomTooltip />}/>
         <Legend />
-        <Bar dataKey="count" fill="red" />
+        <Bar dataKey="count" fill="url(#colorBar)" />
       </BarChart>
     </ResponsiveContainer>
+    </>
   );
 }
 
@@ -84,12 +101,18 @@ const CustomTooltip = ({ active, payload }) => {
     return (
       <div
         style={{
-          backgroundColor: "white",
-          padding: "5px",
+          backgroundColor: "black",
+          paddingLeft: "10px",
+          paddingRight: "10px",
+          paddingTop: "10px",
+          paddingBottom: "10px",
+          borderRadius: "5px",
           border: "1px solid black",
+          color: "white"
         }}
       >
-        <p>{`${data.districtName}: ${data.count}`}</p>
+        <p>District : {`${data.districtName}`}</p>
+        <p>Number of accidents : {`${data.count}`}</p>
       </div>
     );
   }

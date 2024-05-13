@@ -8,7 +8,9 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  Label
 } from "recharts";
+import BoxHeader from "../components/BoxHeader";
 
 function AgeHistNew() {
   const json_data = {
@@ -114,43 +116,68 @@ function AgeHistNew() {
     100: 6,
   };
 
-  return (
-    <ResponsiveContainer width="100%" height={400}>
-      <BarChart
-        data={Object.entries(json_data).map(([age, count]) => ({ age, count }))}
-        barCategoryGap={0}
-        barGap={0}
+
+return (
+  <>
+  <BoxHeader title="Accident Distribution By Age" subtitle="Shows the total number of accidents for each age (2016-2023)" style={{display: 'flex', width: '100%'}} />
+  <ResponsiveContainer width="100%" height="85%">
+    <BarChart
+      width={500}
+      height={300}
+      data={Object.entries(json_data).map(([age, count]) => ({ age, count }))}
+      margin={{ top: 0, left: 4, right: 0, bottom: 0 }}
+      // barCategoryGap={0}
+      // barGap={0}
+    >
+      <defs>
+        <linearGradient id="colorBar" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="5%" stopColor="#71f5de" stopOpacity={0.8} />
+          <stop offset="95%" stopColor="#71f5de" stopOpacity={0} />
+        </linearGradient>
+      </defs>
+      <CartesianGrid vertical={false} stroke={"#48494e"} />
+      <XAxis
+        dataKey="age"
+        // angle={-50}
+        textAnchor="end"
+        interval={9}
+        axisLine={false}
+        tickLine={false}
       >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis
-          dataKey="age"
-          label={{ value: "Age", position: "insideBottom", offset: -10 }}
-        />
-        <YAxis
-          label={{
-            value: "Number of Accidents",
-            angle: -90,
-            position: "insideLeft",
-          }}
-          domain={[0, 66000]}
-        />
-        <Tooltip content={<CustomTooltip />} />
-        <Legend />
-        <Bar dataKey="count" fill="#8884d8" />
-      </BarChart>
-    </ResponsiveContainer>
-  );
+        <Label angle={-45} position="insideBottom" />
+      </XAxis>
+      <YAxis axisLine={false} tickLine={false} domain={[0, 65000]}/>
+      <Tooltip content={<CustomTooltip />}/>
+      <Legend />
+      <Bar dataKey="count" fill="url(#colorBar)" />
+    </BarChart>
+  </ResponsiveContainer>
+  </>
+);
+
 }
 
 export default AgeHistNew;
 
-const CustomTooltip = ({ active, payload, label }) => {
+const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
-      <div>
-        Age: <p>{payload[0].payload["age"]}</p>
-        Count: <p>{payload[0].value}</p>
+      <div
+        style={{
+          backgroundColor: "black",
+          paddingLeft: "10px",
+          paddingRight: "10px",
+          paddingTop: "10px",
+          paddingBottom: "10px",
+          borderRadius: "5px",
+          border: "1px solid black",
+          color: "white"
+        }}
+      >
+        <p>Age : {payload[0].payload["age"]}</p>
+        <p>Number of accidents : {payload[0].value}</p>
       </div>
     );
   }
+  return null;
 };

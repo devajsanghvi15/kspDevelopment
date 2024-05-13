@@ -1,5 +1,6 @@
 import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
+import BoxHeader from '../components/BoxHeader';
 
 const VicSexNew = () => {
   const json_data = [
@@ -7,56 +8,70 @@ const VicSexNew = () => {
     { Sex: 'FEMALE', count: 469951 }
   ];
 
-  const COLORS = ['#0088FE', '#00C49F'];
+  var total = 0;
 
-  const RADIAN = Math.PI / 180;
-  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+    json_data.forEach((element, index) => {
+      total = total + element.count;
+    });
 
-    return (
-      <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-        {`${(percent * 100).toFixed(2)}%`}
-      </text>
-    );
-  };
+
+  const pieColors = ["#0b8f78", "#12efc8"];
+
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={500} height={300}>
+    <>
+      <BoxHeader
+        title="Victim Sex Distribution"
+        subtitle="Shows the percentage of sex of accident victims (2016-2023)"
+        style={{ display: "flex", width: "100%" }}
+      />
+      <ResponsiveContainer width="100%" height="94%">
+        <PieChart
+          width={500}
+          height={300}
+          margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
+        >
           <Pie
             data={json_data}
-            cx="50%"
-            cy="50%"
-            labelLine={false}
-            label={renderCustomizedLabel}
-            // outerRadius={80}
-            fill="#8884d8"
+            innerRadius={110}
+            outerRadius={180}
             dataKey="count"
+            fill="#8884d8"
+            paddingAngle={5}
             nameKey="Sex"
           >
             {json_data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              <Cell key={`cell-${index}`} fill={pieColors[index]} />
             ))}
           </Pie>
-          <Tooltip content={<CustomTooltip />} />
           <Legend />
+          <Tooltip content={<CustomTooltip total={total} />} />
         </PieChart>
       </ResponsiveContainer>
+    </>
   );
-
-
-  }
+}
 
 export default VicSexNew;
 
-const CustomTooltip = ({ active, payload }) => {
+const CustomTooltip = ({ active, payload, total }) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
+    const percentage = ((data.count / total) * 100).toFixed(2);
+
     return (
-      <div style={{ backgroundColor: 'white', padding: '5px', border: '1px solid black' }}>
-        <p>{`${data.Sex}: ${data.count}`}</p>
+      <div
+        style={{
+          backgroundColor: "black",
+          padding: "10px",
+          borderRadius: "5px",
+          border: "1px solid black",
+          color: "white",
+        }}
+      >
+        <p>Sex: {`${data.Sex}`}</p>
+        <p>Number of victims: {`${data.count}`}</p>
+        <p>Percentage: {`${percentage}%`}</p>
       </div>
     );
   }

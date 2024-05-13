@@ -16,7 +16,7 @@ const AppWithRouter = () => {
 };
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const location = useLocation();
 
   const handleLogin = () => {

@@ -1,19 +1,14 @@
-/* * {
-  font-family: fantasy;
-} */
-
 .home-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);
 }
 
 .form-container {
   width: 400px;
   padding: 30px;
-  background-color: #ffffff;
+  background-color: #212121;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   margin: auto;
@@ -22,12 +17,8 @@
 .form-heading {
   text-align: center;
   margin-bottom: 20px;
-
+  color: white;
   font-weight: 600;
-  background-image: linear-gradient(45deg, #553c9a, #ee4b2b);
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
 }
 
 .form-group {
@@ -36,7 +27,7 @@
 
 .form-label {
   display: block;
-  color: #333;
+  color: white;
   margin-bottom: 8px;
 }
 

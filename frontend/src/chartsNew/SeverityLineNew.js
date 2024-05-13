@@ -10,26 +10,55 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import * as DistrictData from "../districtData/SeverityLineData";
+import BoxHeader from "../components/BoxHeader";
 
 function SeverityLineNew({ district }) {
+  const oldName = district;
   district = district.replace(/[ .]/g, "");
-  const data = DistrictData[`${district}SevLine`];
+  const json_data = DistrictData[`${district}SevLine`];
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <LineChart width={500} height={300} data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="year" />
-        <YAxis />
-        <Tooltip content={<CustomTooltip />} />
-        <Legend />
-        <Line type="monotone" dataKey="Damage Only" stroke="#8884d8" />
-        <Line type="monotone" dataKey="Fatal" stroke="#82ca9d" />
-        <Line type="monotone" dataKey="Grievous Injury" stroke="#ff7300" />
-        <Line type="monotone" dataKey="Others" stroke="#0088ff" />
-        <Line type="monotone" dataKey="Simple Injury" stroke="#ff0080" />
-      </LineChart>
-    </ResponsiveContainer>
+    <>
+      <BoxHeader
+        title={`Trends In Severity Of Accidents in ${oldName}`}
+        subtitle={`Shows the total number of accidents in ${oldName} each year (2016-2023) according to their severity`}
+        style={{ display: "flex", width: "100%" }}
+      />
+      <ResponsiveContainer width="100%" height="94%">
+        <LineChart
+          width={500}
+          height={300}
+          data={json_data}
+          margin={{ top: 0, left: 2, right: 4, bottom: 0 }}
+        >
+          <CartesianGrid vertical={false} stroke="#48494e" />
+          <XAxis dataKey="year" tickLine={false} />
+          <YAxis tickLine={false} axisLine={false} />
+          <Legend />
+          <Tooltip content={<CustomTooltip />} />
+          <Line
+            type="monotone"
+            dataKey="Damage Only"
+            dot={true}
+            stroke="#f2b455"
+          />
+          <Line type="monotone" dataKey="Fatal" dot={true} stroke="#076050" />
+          <Line
+            type="monotone"
+            dataKey="Grievous Injury"
+            dot={true}
+            stroke="#8884d8"
+          />
+          <Line type="monotone" dataKey="Others" dot={true} stroke="#a0f9e9" />
+          <Line
+            type="monotone"
+            dataKey="Simple Injury"
+            dot={true}
+            stroke="#12efc8"
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </>
   );
 }
 
@@ -38,10 +67,19 @@ export default SeverityLineNew;
 const CustomTooltip = ({ active, payload, label }) => {
   if (active) {
     return (
-      <div className="custom-tooltip">
+      <div className="custom-tooltip" style={{
+        backgroundColor: "black",
+        paddingLeft: "10px",
+        paddingRight: "10px",
+        paddingTop: "10px",
+        paddingBottom: "10px",
+        borderRadius: "5px",
+        border: "1px solid black",
+        color: "white"
+      }}>
         <p className="label">{`Year: ${label}`}</p>
         {payload.map((item, index) => (
-          <p key={index} className="desc" style={{ color: item.color }}>
+          <p key={index} className="desc" >
             {`${item.name}: ${item.value}`}
           </p>
         ))}

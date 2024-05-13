@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import BoxHeader from "../components/BoxHeader";
 
 function OoMainCausePieNew() {
   const json_data = [
@@ -17,74 +18,72 @@ function OoMainCausePieNew() {
     { mainCause: "Road Environment Defect", count: 1098 },
   ];
 
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+  var total = 0;
 
-  const RADIAN = Math.PI / 180;
-  const renderCustomizedLabel = ({
-    cx,
-    cy,
-    midAngle,
-    innerRadius,
-    outerRadius,
-    percent,
-    index,
-  }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+    json_data.forEach((element, index) => {
+      total = total + element.count;
+    });
 
-    return (
-      <text
-        x={x}
-        y={y}
-        fill="white"
-        textAnchor={x > cx ? "start" : "end"}
-        dominantBaseline="central"
-      >
-        {`${(percent * 100).toFixed(2)}%`}
-      </text>
-    );
-  };
+
+  const pieColors = ["#0b8f78", "#12efc8", "#71f5de", "#d0fcf4"];
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <PieChart width={500} height={300}>
-        <Pie
-          data={json_data}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          label={renderCustomizedLabel}
-          // outerRadius={80}
-          fill="#8884d8"
-          dataKey="count"
-          nameKey="mainCause"
+    <>
+      <BoxHeader
+        title="Main Cause Of Accidents"
+        subtitle="Shows the percentage of main causes of the accidents (2016-2023)"
+        style={{ display: "flex", width: "100%" }}
+      />
+      <ResponsiveContainer width="100%" height="94%">
+        <PieChart
+          width={500}
+          height={300}
+          margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
         >
-          {json_data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <Tooltip content={<CustomTooltip />} />
-        <Legend />
-      </PieChart>
-    </ResponsiveContainer>
+          <Pie
+            data={json_data}
+            innerRadius={110}
+            outerRadius={180}
+            dataKey="count"
+            fill="#8884d8"
+            paddingAngle={5}
+            nameKey="mainCause"
+          >
+            {json_data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={pieColors[index]} />
+            ))}
+          </Pie>
+          <Legend />
+          <Tooltip content={<CustomTooltip total={total} />} />
+        </PieChart>
+      </ResponsiveContainer>
+    </>
   );
 }
 
 export default OoMainCausePieNew;
 
-const CustomTooltip = ({ active, payload }) => {
+const CustomTooltip = ({ active, payload, total }) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
+    const percentage = ((data.count / total) * 100).toFixed(3);
+
     return (
       <div
         style={{
-          backgroundColor: "white",
-          padding: "5px",
+          backgroundColor: "black",
+          paddingLeft: "10px",
+          paddingRight: "10px",
+          paddingTop: "10px",
+          paddingBottom: "10px",
+          borderRadius: "5px",
           border: "1px solid black",
+          color: "white",
         }}
       >
-        <p>{`${data.mainCause}: ${data.count}`}</p>
+        <p>Main Cause: {`${data.mainCause}`}</p>
+        <p>Number of accidents: {`${data.count}`}</p>
+        <p>Percentage: {`${percentage}%`}</p>
       </div>
     );
   }
