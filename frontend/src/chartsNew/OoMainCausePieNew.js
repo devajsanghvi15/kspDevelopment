@@ -25,7 +25,8 @@ function OoMainCausePieNew() {
     });
 
 
-  const pieColors = ["#0b8f78", "#12efc8", "#71f5de", "#d0fcf4"];
+  // const pieColors = ["#0b8f78", "#12efc8", "#71f5de", "#d0fcf4"];
+  const pieColors = [ "#144266", "#1d6499", "#31a6ff", "#5ab8ff"];
 
   return (
     <>
@@ -72,13 +73,11 @@ const CustomTooltip = ({ active, payload, total }) => {
       <div
         style={{
           backgroundColor: "black",
-          paddingLeft: "10px",
-          paddingRight: "10px",
-          paddingTop: "10px",
-          paddingBottom: "10px",
+          padding: "10px",
           borderRadius: "5px",
           border: "1px solid black",
           color: "white",
+          fontSize: "12px"
         }}
       >
         <p>Main Cause: {`${data.mainCause}`}</p>

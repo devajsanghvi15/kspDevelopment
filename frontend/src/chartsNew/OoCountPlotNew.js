@@ -67,11 +67,11 @@ function OoCountPlotNew() {
       >
         <defs>
           <linearGradient id="colorBar" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#71f5de" stopOpacity={0.8} />
-            <stop offset="95%" stopColor="#71f5de" stopOpacity={0} />
+            <stop offset="5%" stopColor="#2785cc" stopOpacity={0.8} />
+            <stop offset="95%" stopColor="#2785cc" stopOpacity={0.4} />
           </linearGradient>
         </defs>
-        <CartesianGrid vertical={false} stroke={"#48494e"} />
+        <CartesianGrid vertical={false} stroke={"#6b6d74"} />
         <XAxis
           dataKey="districtName"
           angle={-50}
@@ -102,13 +102,11 @@ const CustomTooltip = ({ active, payload }) => {
       <div
         style={{
           backgroundColor: "black",
-          paddingLeft: "10px",
-          paddingRight: "10px",
-          paddingTop: "10px",
-          paddingBottom: "10px",
+          padding: "10px",
           borderRadius: "5px",
           border: "1px solid black",
-          color: "white"
+          color: "white",
+          fontSize: "12px"
         }}
       >
         <p>District : {`${data.districtName}`}</p>

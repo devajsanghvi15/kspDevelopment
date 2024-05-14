@@ -15,7 +15,7 @@ const VicSexNew = () => {
     });
 
 
-  const pieColors = ["#0b8f78", "#12efc8"];
+  const pieColors = ["#144266", "#31a6ff"];
 
 
   return (
@@ -67,6 +67,7 @@ const CustomTooltip = ({ active, payload, total }) => {
           borderRadius: "5px",
           border: "1px solid black",
           color: "white",
+          fontSize: "12px"
         }}
       >
         <p>Sex: {`${data.Sex}`}</p>

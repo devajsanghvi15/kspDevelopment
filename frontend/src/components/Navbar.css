@@ -1,14 +1,10 @@
-/* * {
-  font-family: fantasy;
-} */
-
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 60px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background: #EDF4F2;
+  background-color: #f3f5f7;
   border-bottom: 1px solid black;
 }
 
@@ -25,16 +21,13 @@
 
 .navbar-link {
   text-decoration: none;
-  color: #333;
+  color: black;
   font-weight: bold;
   transition: color 0.2s ease;
 }
 
 .navbar-link:hover {
-  background-image: linear-gradient(45deg, #553c9a, #ee4b2b);
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
+  color: #333333;
 }
 
 .navbar-logo-left,
@@ -81,10 +74,3 @@
   margin-top: 10px;
   width: 90px;
 }
-
-/* p {
-  background-image: linear-gradient(45deg, #553c9a, #ee4b2b);
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-} */

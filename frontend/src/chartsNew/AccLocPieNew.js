@@ -24,7 +24,7 @@ function AccLocPieNew() {
     });
 
 
-  const pieColors = ["#0b8f78", "#12efc8", "#71f5de"];
+  const pieColors = ["#144266", "#1d6499", "#31a6ff"];
 
   return (
     <>
@@ -75,6 +75,7 @@ const CustomTooltip = ({ active, payload, total }) => {
           borderRadius: "5px",
           border: "1px solid black",
           color: "white",
+          fontSize: "12px"
         }}
       >
         <p>Accident location: {`${data.accidentLocation}`}</p>

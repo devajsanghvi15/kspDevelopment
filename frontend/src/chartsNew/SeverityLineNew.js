@@ -31,7 +31,7 @@ function SeverityLineNew({ district }) {
           data={json_data}
           margin={{ top: 0, left: 2, right: 4, bottom: 0 }}
         >
-          <CartesianGrid vertical={false} stroke="#48494e" />
+          <CartesianGrid vertical={false} stroke="#6b6d74" />
           <XAxis dataKey="year" tickLine={false} />
           <YAxis tickLine={false} axisLine={false} />
           <Legend />
@@ -49,7 +49,7 @@ function SeverityLineNew({ district }) {
             dot={true}
             stroke="#8884d8"
           />
-          <Line type="monotone" dataKey="Others" dot={true} stroke="#a0f9e9" />
+          <Line type="monotone" dataKey="Others" dot={true} stroke="#31a6ff" />
           <Line
             type="monotone"
             dataKey="Simple Injury"
@@ -69,13 +69,11 @@ const CustomTooltip = ({ active, payload, label }) => {
     return (
       <div className="custom-tooltip" style={{
         backgroundColor: "black",
-        paddingLeft: "10px",
-        paddingRight: "10px",
-        paddingTop: "10px",
-        paddingBottom: "10px",
+        padding: "10px",
         borderRadius: "5px",
         border: "1px solid black",
-        color: "white"
+        color: "white",
+        fontSize: "12px"
       }}>
         <p className="label">{`Year: ${label}`}</p>
         {payload.map((item, index) => (

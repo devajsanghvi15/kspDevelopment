@@ -35,7 +35,7 @@ const articles = [
 function Awareness() {
   return (
     <div className="container">
-      <h2>Awareness Portal</h2>
+      <div className='aware-heading'>AWARENESS PORTAL</div>
       <div className="articles-container">
         {articles.map((article, index) => (
           <div key={index} className="article">

@@ -1,16 +1,5 @@
 import React, { useState } from "react";
 import "./Analysis.css"; // Import the CSS file
-import RoadAccidentPlot from "../charts/typesRoad.js";
-import OoCountPlot from "../charts/OoCountPlot.js";
-import LineChart from "../charts/linechart.js";
-import OoMainCausePie from "../charts/OoMainCausePie.js";
-import Sev from "../charts/Sev.js";
-import AccLocPie from "../charts/AccLocPie.js";
-import SexDistributionPiePlot from "../charts/vicSex.js";
-import SeverityLine from "../charts/SeverityLine.js";
-import MainCausePie from "../charts/MainCausePie.js";
-import AccOverYearsDis from "../charts/AccOverYearsDis.js";
-import AgeDistributionPlot from "../charts/AgeHist.js";
 
 //new charts using recharts
 

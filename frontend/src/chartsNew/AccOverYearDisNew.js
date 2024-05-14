@@ -29,12 +29,12 @@ const maxCount = Math.max(...counts) + 10;
     <BoxHeader title={`Trends In Accidents in ${oldName}`} subtitle={`Shows the total number of accidents in ${oldName} each year (2016-2023)`} style={{display: 'flex', width: '100%'}} />
       <ResponsiveContainer width="100%" height="94%">
         <LineChart width={500} height={300} data={json_data} margin={{ top: 0, left: 6, right: 4, bottom: 0 }}>
-          <CartesianGrid vertical={false} stroke="#48494e" />
+          <CartesianGrid vertical={false} stroke="#6b6d74" />
           <XAxis dataKey="year" tickLine={false} />
           <YAxis tickLine={false} axisLine={false} domain={[minCount, maxCount]} />
           <Legend />
           <Tooltip content={<CustomTooltip />} />
-          <Line type="monotone" dataKey="count" dot={true} stroke="#71f5de" />
+          <Line type="monotone" dataKey="count" dot={true} stroke="#2785cc" />
         </LineChart>
       </ResponsiveContainer>
     </>
@@ -50,13 +50,11 @@ const CustomTooltip = ({ active, payload }) => {
       <div
         style={{
           backgroundColor: "black",
-          paddingLeft: "10px",
-          paddingRight: "10px",
-          paddingTop: "10px",
-          paddingBottom: "10px",
+          padding: "10px",
           borderRadius: "5px",
           border: "1px solid black",
-          color: "white"
+          color: "white",
+          fontSize: "12px"
         }}
       >
         <p>Year : {`${data.year}`}</p>
