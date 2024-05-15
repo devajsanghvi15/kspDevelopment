@@ -6,6 +6,16 @@ from .serializers import VideoSerializer
 import os
 import subprocess
 from django.conf import settings
+# views.py
+import json
+from django.http import JsonResponse
+import os
+
+def get_articles(request):
+    json_path = './awareness/articles_summarised2.json'
+    with open(json_path, 'r') as file:
+        articles = json.load(file)
+    return JsonResponse(articles, safe=False)
 
 class VideoUploadView(APIView):
     def post(self, request):
