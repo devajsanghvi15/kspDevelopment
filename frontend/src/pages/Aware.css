@@ -16,9 +16,8 @@
 
 .article {
   display: grid;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 60% 40%; /* Adjust the columns to allocate more space for the image */
   overflow-y: auto;
-  /* margin-top: 20px; */
   margin-bottom: 30px;
   border-radius: 8px;
   box-shadow: 2px 2px 3px 1px #333333;
@@ -42,14 +41,15 @@
 .image {
   display: flex;
   align-items: center;
+  justify-content: center; /* Center the image in the container */
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   overflow: hidden;
-  padding-right: 20px;
+  padding: 20px; /* Add padding to give more space to the image */
 }
 
 .image img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 80%; /* Ensure the image takes the full width of the container */
+  height: 80%; /* Maintain the aspect ratio of the image */
   border-radius: 8px;
 }
