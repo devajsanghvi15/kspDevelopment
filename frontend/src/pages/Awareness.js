@@ -24,6 +24,9 @@ function Awareness() {
             <div className="article-content">
               <div className="title"><h3>{article.Title}</h3></div>
               <div className="description">{article.Description}</div>
+              <div className="link">
+                <a href={article.Link} target="_blank" rel="noopener noreferrer">Read more</a>
+              </div>
             </div>
             <span className="image">
               <img src={article.Image} alt={article.Title} />
