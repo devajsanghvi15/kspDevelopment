@@ -3,9 +3,56 @@ import AxiosInstance from './axios'; // Import your axios instance
 import './Home.css'; // Import CSS 
 
 function Home() {
+  const districts = [
+    "Bagalkot",
+    "Ballari",
+    "Belagavi City",
+    "Belagavi Dist",
+    "Bengaluru City",
+    "Bengaluru Dist",
+    "Bidar",
+    "Chamarajanagar",
+    "Chickballapura",
+    "Chikkamagaluru",
+    "Chitradurga",
+    "Dakshina Kannada",
+    "Davanagere",
+    "Dharwad",
+    "Gadag",
+    "Hassan",
+    "Haveri",
+    "Hubballi Dharwad City",
+    "K.G.F",
+    "Kalaburagi",
+    "Kalaburagi City",
+    "Karnataka Railways",
+    "Kodagu",
+    "Kolar",
+    "Koppal",
+    "Mandya",
+    "Mangaluru City",
+    "Mysuru City",
+    "Mysuru Dist",
+    "Raichur",
+    "Ramanagara",
+    "Shivamogga",
+    "Tumakuru",
+    "Udupi",
+    "Uttara Kannada",
+    "Vijayanagara",
+    "Vijayapur",
+    "Yadgir",
+  ];
+
+  const [selectedDistrict, setSelectedDistrict] = useState("");
+  const handleDistrictChange = (event) => {
+    const selectedDistrictValue = event.target.value;
+    setSelectedDistrict(selectedDistrictValue);
+    console.log("Selected District:", selectedDistrictValue);
+  };
   
   const [videoFile, setVideoFile] = useState(null);
-  const [locality, setLocality] = useState('');
+  // const [locality, setLocality] = useState('');
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [videoKey, setVideoKey] = useState(Date.now()); // Unique key for video element
@@ -18,13 +65,13 @@ function Home() {
     setVideoKey(Date.now()); // Update key to force re-render of video element
   };
 
-  const handleLocalityChange = (event) => {
-    setLocality(event.target.value);
-  };
+  // const handleLocalityChange = (event) => {
+  //   setLocality(event.target.value);
+  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!videoFile || !locality) {
+    if (!videoFile || !selectedDistrict) {
       setError('Please fill out all fields.');
       return;
     }
@@ -38,7 +85,7 @@ function Home() {
     // Create a FormData instance to hold the file and locality
     const formData = new FormData();
     formData.append('file', videoFile); // Make sure 'file' is the correct key
-    formData.append('locality', locality); // Make sure 'locality' is the correct key
+    formData.append('locality', selectedDistrict); // Make sure 'locality' is the correct key
   
     try {
       // Make a POST request to your Django backend
@@ -59,6 +106,8 @@ function Home() {
   
 
   return (
+    <>
+    <div className='home-heading'>ACCIDENT DETECTION</div>
     <div className='home-container'>
       <div className="form-container">
         <h2 className="form-heading">Upload Video</h2>
@@ -70,8 +119,16 @@ function Home() {
             <input type="file" id="video" className="form-input" onChange={handleFileChange} accept="video/*" />
           </div>
           <div className="form-group">
-            <label htmlFor="locality" className="form-label">Locality:</label>
-            <input type="text" id="locality" className="form-input" value={locality} onChange={handleLocalityChange} />
+            <label htmlFor="locality" className="form-label">District:</label>
+            {/* <input type="text" id="locality" className="form-input" value={locality} onChange={handleLocalityChange} /> */}
+            <select value={selectedDistrict} onChange={handleDistrictChange}>
+            <option value="">Select a district</option>
+            {districts.map((district, index) => (
+              <option key={index} value={district}>
+                {district}
+              </option>
+            ))}
+          </select>
           </div>
           <button type="submit" className="submit-button">Submit</button>
         </form>
@@ -85,6 +142,7 @@ function Home() {
         )}
       </div>
     </div>
+    </>
   );
 }
 

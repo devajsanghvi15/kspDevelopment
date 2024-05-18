@@ -5,13 +5,24 @@
   height: 100vh;
 }
 
+.home-heading {
+  font-size: 40px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: black;
+}
+
+
 .form-container {
   width: 400px;
   padding: 30px;
   background-color: white;
   border-radius: 1rem;
   box-shadow: 2px 2px 3px 1px #333333;
-  margin: auto;
+  margin-top: 75px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
   color: black;
 }
 
@@ -75,12 +86,13 @@ submit-button:hover {
 }
 
 .video-container {
-  margin-top: 30px;
   width: 500px;
   display: flex;
   justify-content: center;
-  margin-right: 30px;
-  
+  margin-top: 90px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
 }
 
 .video-player {
@@ -89,6 +101,5 @@ submit-button:hover {
   height: auto;
   max-height: 400px;
   border-radius: 10px;
-  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
   box-shadow: 2px 2px 3px 1px #333333;
 }
