@@ -17,6 +17,8 @@ function Awareness() {
 
   return (
     <div className="container">
+      <br></br>
+      <br></br>
       <div className='aware-heading'>AWARENESS PORTAL</div>
       <div className="articles-container">
         {articles.map((article, index) => (

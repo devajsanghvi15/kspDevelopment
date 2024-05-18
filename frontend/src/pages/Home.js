@@ -107,6 +107,8 @@ function Home() {
 
   return (
     <>
+    <br></br>
+    <br></br>
     <div className='home-heading'>ACCIDENT DETECTION</div>
     <div className='home-container'>
       <div className="form-container">
