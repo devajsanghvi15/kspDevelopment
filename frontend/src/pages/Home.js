@@ -114,7 +114,7 @@ function Home() {
       <div className="form-container">
         <h2 className="form-heading">Upload Video</h2>
         {error && <div className="error-message">{error}</div>}
-        {submitted && <div className="success-message">Form submitted successfully!</div>}
+        {submitted && <div className="success-message">Form submitted successfully! </div>}
         <form className="form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="video" className="form-label">Video:</label>
