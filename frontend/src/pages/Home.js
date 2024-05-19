@@ -109,7 +109,7 @@ function Home() {
     <>
     <br></br>
     <br></br>
-    <div className='home-heading'>ACCIDENT DETECTION</div>
+    <div className='home-heading'>ACCUGUARD</div>
     <div className='home-container'>
       <div className="form-container">
         <h2 className="form-heading">Upload Video</h2>
