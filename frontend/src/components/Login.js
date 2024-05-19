@@ -20,14 +20,14 @@ function LoginForm({ onLogin }) {
         type="text"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        placeholder="Enter username"
+        placeholder="Enter username (abc)"
         className="login-input"
       />
       <input
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        placeholder="Enter password"
+        placeholder="Enter password (123)"
         className="login-input"
       />
       <button type="submit" className="login-button">Login</button>
