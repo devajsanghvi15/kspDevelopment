@@ -72,13 +72,13 @@ function Home() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!videoFile || !selectedDistrict) {
-      //setError('Please fill out all fields.');
-      setSubmitted(true);
+      setError('Please fill out all fields.');
+     // setSubmitted(true);
       return;
     }
     if (!videoFile.type.startsWith('video/')) {
-     // setError('Please select a valid video file.');
-     setSubmitted(true);
+      setError('Please select a valid video file.');
+     //setSubmitted(true);
       return;
     }
     // All fields are valid
