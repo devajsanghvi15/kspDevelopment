@@ -1,19 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+import articlesData from '../csv/articles_summarised2.json';
 import './Aware.css';
 
 function Awareness() {
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://127.0.0.1:8000/get_articles/')
-      .then(response => {
-        setArticles(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
+  const [articles, setArticles] = useState(articlesData);
 
   return (
     <div className="container">

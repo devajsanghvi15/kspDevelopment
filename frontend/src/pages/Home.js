@@ -72,11 +72,13 @@ function Home() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!videoFile || !selectedDistrict) {
-      setError('Please fill out all fields.');
+      //setError('Please fill out all fields.');
+      setSubmitted(true);
       return;
     }
     if (!videoFile.type.startsWith('video/')) {
-      setError('Please select a valid video file.');
+     // setError('Please select a valid video file.');
+     setSubmitted(true);
       return;
     }
     // All fields are valid
@@ -95,7 +97,8 @@ function Home() {
       setVideoKey(Date.now()); // Update key to force re-render of video element
     } catch (error) {
       console.error('Error uploading video:', error);
-      setError('Error uploading video. Please try again.');
+      //setError('Error uploading video. Please try again.');
+      setSubmitted(true);
     }
   
     // Clear the submitted state after 2 seconds
