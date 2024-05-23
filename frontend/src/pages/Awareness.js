@@ -1,9 +1,21 @@
-import React, { useState } from 'react';
-import articlesData from '../csv/articles_summarised2.json';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './Aware.css';
 
 function Awareness() {
-  const [articles, setArticles] = useState(articlesData);
+  require('dotenv').config();
+  const server = process.env.SERVER;
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    axios.get(server)
+      .then(response => {
+        setArticles(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
   return (
     <div className="container">
